@@ -1,0 +1,15 @@
+FROM golang:1.27
+
+WORKDIR /usr/src/app
+
+EXPOSE 8080
+ 
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY . .
+
+RUN go build -o main .
+
+CMD ["./main"]
